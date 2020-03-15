@@ -1,0 +1,32 @@
+    1  clear
+    2  ls
+    3  docker version
+    4  clear
+    5  docker run hello-world
+    6  docker ps -a
+    7  clear
+    8  docker version
+    9  clear
+   10  history
+   11  clear
+   12  history
+   13  man history 
+   14  clear
+   15  echo start
+   16  echo "overriding the def commands"
+   17  docker run busybox echo hi there!
+   18  docker run busybox echo how are you?
+   19  docker run busybox echo how are you
+   20  docker run busybox ls
+   21  docker run hello-world ls
+   22  echo "viewing all the containers"
+   23  docker ps
+   24  docker run busybox ping google.com
+   25* ls
+   26* clear
+   27* docker ps 
+   28* clear
+   29  echo "to see all ever created"
+   30  docker ps --all
+   31  clear
+   32  history
