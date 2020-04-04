@@ -21,6 +21,16 @@ redis_password = ""
 r = redis.StrictRedis(host=redis_host, port=redis_port,
                       password=redis_password, decode_responses=True)
 
+count = 0
+
+
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
+
 @app.route('/alive', methods=['GET'])
 def alive():
     message = jsonify({'prediction': 'About not to come'})
@@ -34,19 +44,25 @@ def alive():
 
 @app.route('/set', methods=['GET'])
 def redis_set():
+    global count
+    count += 1
     r.set("msg:hello", "Hello Redis!!!")
     return jsonify({'Message': 'SET!'})
 
 
 @app.route('/get', methods=['GET'])
 def redis_get():
+    global count
     msg = r.get("msg:hello")
-    return jsonify({'Message': msg})
+    return jsonify({'Message': str(count)})
 
 
 
 @app.route('/', methods=['GET'])
 def root():
+    if 1 == 1:
+        shutdown_server()
+    
     return jsonify({'Message': 'This is a multi-local container api'})
 
 

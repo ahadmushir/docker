@@ -3,6 +3,7 @@ services:
     redis-server:
         image: 'redis'
     flask-app:
+        restart: always
         build: .
         ports: 
             - "5000:5000"
